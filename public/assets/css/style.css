@@ -225,3 +225,9 @@ nav a {
 .sectThree { 
   background-image: url("../images/truckyeah.jpg");
    }
+
+/**Review Page**/
+.navbar {
+  background-color: #666;
+  opacity: 0.7;
+}
