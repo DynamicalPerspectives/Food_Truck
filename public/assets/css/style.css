@@ -165,7 +165,8 @@ nav {
   height: 50px;
   background-color: rgba(0,0,0,.5);
   z-index: 99;
-  text-align: center; 
+  text-align: center;
+  text-decoration: none; 
 }
 
 nav a { 
@@ -173,7 +174,7 @@ nav a {
   color: #fff;
   margin-left: 30px;
   line-height: 50px;
-  font-family: "Comic Sans Ms"; 
+  font-family: 'Righteous', cursive; 
   font-size: 25px;
  }
 
@@ -185,16 +186,16 @@ nav a {
 }
 
 #aboutSection { 
-  height: 45%;
+  height: 32%;
 }
 
 #aboutSection h1 { 
-  font-family: "Comic Sans Ms";
+  font-family: 'Righteous', cursive;
   font-size: 50px;
 }
 
 #aboutSection p {
-  font-family: "Comic Sans Ms";
+  font-family: 'Righteous', cursive;
   font-size: 20px;
 }
 
@@ -208,19 +209,19 @@ nav a {
 }
 
 #teamSection h3 { 
-  font-family: "Comic Sans Ms";
+  font-family: 'Righteous', cursive;
   font-size: 40px;
 }
 
 
 .sectOne { 
-  background-image: url("/assets/images/truckingfun.jpg");
+  background-image: url("../images/truckingfun.jpg");
    }
 
 .sectTwo { 
-  background-image: url("assets/images/night.jpg");
+  background-image: url("../images/night.jpg");
    }
 
 .sectThree { 
-  background-image: url("assets/images/truckyeah.jpg");
+  background-image: url("../images/truckyeah.jpg");
    }
