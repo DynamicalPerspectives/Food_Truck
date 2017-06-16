@@ -1,7 +1,7 @@
 var express = require("express");
 var aws = require("aws-sdk");
 var path = require("path");
-var keys = path.join(__dirname + "/awskeys.json");
+var keys = path.join(__dirname + "/awskeys.json") || { accessKeyId: process.env.S3_KEY, secretAccessKey: process.env.S3_SECRET };
 var router = express.Router();
 var multers3 = require("multer-s3");
 var multer = require("multer");

@@ -32,9 +32,9 @@
 		</div>
 		 	<div class="container-fluid">
 		 		<div class="navbar-header" id="">
-      			<a href="home.html" class="add-navbar">Home</a>
-      			<a href="reviews.html" class="add-navbar">Review a Truck</a>
-      			<a href="about.html" class="add-navbar">About</a>
+      			<a href="/home" class="add-navbar">Home</a>
+      			<a href="/reviews" class="add-navbar">Truck Reviews</a>
+      			<a href="/about" class="add-navbar">About</a>
       			</div>
       		</div>
 	</div>
@@ -47,7 +47,7 @@
 
 				<div class="form-group">
 					<label for="foodTruckName">Food Truck Name:</label>
-						<input type="text" class="form-control" id="foodTruckName" placeholder="Burger, she wrote.">
+					<input type="text" class="form-control" id="foodTruckName" placeholder="Burger, she wrote.">
 				</div>
 
 				<div class="form-group">
@@ -81,16 +81,48 @@
 
 	</div>
 
-	<div class="row" id="fileUpload">
-		<div class="col col-sm-12">
+	<div class="row">
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="uploadModal">
+		  Launch demo modal
+		</button>
+
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h4 class="modal-title" id="exampleModalLabel">Your truck has been entered!</h4>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <h5>Would you like to include a menu?</h5>
+		        <h5>Please upload your menu here.</h5>
+		        <form method="post" action="/upload/menu" enctype="multipart/form-data">
+					<input id="truckName" type="hidden" name="truckname">
+					<input type="file" name="menu">
+					<br><br>
+					<button type="submit" id="submitUpload">Upload Menu</button>
+				</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">No Thanks</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- <div class="col col-sm-12">
 			<h3>Thanks for entering a food truck! If you'd like to also include a menu, please upload a pdf version here.
 			<form method="post" action="/upload/menu" enctype="multipart/form-data">
 				<input id="truckName" type="hidden" name="truckname">
 				<input type="file" name="menu">
 				<button type="submit" id="submitUpload">Upload</button>
 			</form>
-		</div>
+		</div> -->
 	</div>
+
+
 
 	<footer class="text-center footer">
         <div class="container">

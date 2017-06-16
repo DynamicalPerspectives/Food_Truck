@@ -3,7 +3,6 @@ module.exports = function(sequelize, DataTypes) {
 		user_name: {
 			type: DataTypes.STRING,
 			allowNull: false,
-			defaultValue: "Anonymous",
 			validate: {
 				notEmpty: true
 			}
@@ -19,18 +18,11 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		fav_food: {
 			type: DataTypes.STRING,
-			allowNull: false,
-			validate: {
-				notEmpty: true
-			}
+			allowNull: false
 		},
 		review: {
 			type: DataTypes.TEXT,
-			allowNull: true,
-			defaultValue: null,
-			validate: {
-				notEmpty: true
-			}
+			allowNull: false
 		},
 		created_at: {
 			type: DataTypes.DATEONLY,

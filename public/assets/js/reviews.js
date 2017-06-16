@@ -42,6 +42,10 @@ function parseFTData(data) {
 	$("#cuisine").text("Cuisine: " + truckD.food_type);
 	$("#truckReviews").text("Some real truckin' reviews...");
 
+	if (truckD.popular_item !== "none") {
+		$("#popDish").text("Gotta' try: " + truckD.popular_item);
+	}
+
 	if (truckD.menu_download !== "no menu") {
 		var link = $("<a>");
 		link.attr("href", truckD.menu_download);
@@ -91,27 +95,44 @@ function parseFTData(data) {
 
 $("#reviewSubmit").on("click", function(event) {
 	event.preventDefault();
-	var queryUrl = "/api/review/" + $("#myModalLabel").text();
+	var rating = $("#rating").val().trim();
+	console.log(rating);
 
-	var reviewObject = {
-		user_name: $("#userName").val().trim(),
-		rating: $("#rating").val().trim(),
-		fav_food: $("#exampleFavFood").val().trim(),
-		review: $("#reviews").val().trim()
-	}
+	if (rating === "1" || rating === "2" || rating === "3" || rating === "4" || rating === "5") {
 
-	$.post(queryUrl, reviewObject, function(data) {
-		$("#averageRating").text("Rating: " + data[0]);
-		$("#totalRatings").text("Total reviews: " + data[1]);
-		var ptag = $("<p>");
-		ptag.text(reviewObject.user_name + " says: " + reviewObject.review);
-		$("#truckReviews").text("Some real truckin' reviews...");
-		$("#currentReviews").prepend(ptag);
-		$("#userName").val("");
+		var queryUrl = "/api/review/" + $("#myModalLabel").text();
+
+		var reviewObject = {
+			user_name: $("#userName").val().trim(),
+			rating: $("#rating").val().trim(),
+			fav_food: $("#exampleFavFood").val().trim(),
+			review: $("#reviews").val().trim()
+		}
+
+		if (reviewObject.user_name === "") {
+			reviewObject.user_name = "One food truck expert";
+		}
+
+		console.log(reviewObject);
+
+		$.post(queryUrl, reviewObject, function(data) {
+			$("#averageRating").text("Rating: " + data[0]);
+			$("#totalRatings").text("Total reviews: " + data[1]);
+			var ptag = $("<p>");
+			ptag.text(reviewObject.user_name + " says: " + reviewObject.review);
+			$("#truckReviews").text("Some real truckin' reviews...");
+			$("#currentReviews").prepend(ptag);
+			$("#userName").val("");
+			$("#rating").val("");
+			$("#exampleFavFood").val("");
+			$("#reviews").val("");
+			$("#received").text("Thanks for your review!");
+			$("#closer").click();
+		});
+	} else {
 		$("#rating").val("");
-		$("#exampleFavFood").val("");
-		$("#reviews").val("");
-		$("#received").text("Thanks for your review!");
-	});
+		$("#isNum").addClass("has-error has-feedback");
+		$("#rating").attr("placeholder", "Please choose a number from 1-5.");
+	}
 });
 
