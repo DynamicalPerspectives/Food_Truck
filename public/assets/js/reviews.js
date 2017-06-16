@@ -85,7 +85,7 @@ function parseFTData(data) {
 		$("#twitterHandle").text("This truck is old school and has no twitter.");
 	} else {
 		$("#truckDescription").text(twitterD.description);
-		$("#twitterHandle").text("Twitter Handle: @" + truckD.twitter_handle);
+		$("#twitterHandle").text("@" + truckD.twitter_handle);
 
 		var tHeader = $("<h5>");
 		tHeader.text(truckD.name + " tweets...");
