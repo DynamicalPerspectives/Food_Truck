@@ -16,6 +16,10 @@ function getFoodTrucks() {
 			$("#tweets").empty();
 			$("#currentReviews").empty();
 			$("#received").text("");
+			$("#popDish").text("");
+			$("#menu").text("");
+			$("#website").text("");
+			$("#twitterHandle").text("");
 			getFoodTruckData($(this).text());
 		});
 	});
