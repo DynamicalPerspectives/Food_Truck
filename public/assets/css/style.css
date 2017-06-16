@@ -118,10 +118,9 @@ h3 {
 	background: #CFB095;
 }
 
-#averageRating, #cuisine, #website, #twitterHandle {
+#averageRating, #totalRatings, #cuisine, #menu, #popDish, #website, #twitterHandle {
 	font-weight: bold;
 	font-size: 25px;
-    text-decoration: underline;
     text-align: center;
 }
 

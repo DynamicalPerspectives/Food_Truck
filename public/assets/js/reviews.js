@@ -54,7 +54,7 @@ function parseFTData(data) {
 		$("#menu").append(link);
 	}
 
-	if (truckD.website !== "www.nosite.com") {
+	if (truckD.website !== "www.none.com") {
 		var link = $("<a>");
 		link.attr("href", "http://" + truckD.website);
 		link.attr("target", "_blank");
@@ -75,7 +75,7 @@ function parseFTData(data) {
 
 		for (var i = 0; i < twitterD.tweet.length; i++) {
 			var ptag = $("<p>");
-			ptag.text(twitterD.created[i] + "  --  " + twitterD.tweet[i]);
+			ptag.html(twitterD.created[i] + "  --  " + twitterD.tweet[i]);
 			$("#tweets").append(ptag);
 		}
 	}
@@ -84,9 +84,11 @@ function parseFTData(data) {
 		$("#truckReviews").text("There are no reviews yet for this truck. Be the first to review!");
 	} else {
 		for (var i = 0; i < reviewsD.length; i++) {
-			var ptag = $("<p>");
-			ptag.html(reviewsD[i].user_name + " says: " + reviewsD[i].review)
-			$("#currentReviews").append(ptag);
+			if (reviewsD[i].review !== "") {
+				var ptag = $("<p>");
+				ptag.text(reviewsD[i].user_name + " says: " + reviewsD[i].review)
+				$("#currentReviews").append(ptag);
+			}
 		}
 	}
 
