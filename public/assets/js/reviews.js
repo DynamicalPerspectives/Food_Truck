@@ -16,6 +16,9 @@ function getFoodTrucks() {
 			$("#tweets").empty();
 			$("#currentReviews").empty();
 			$("#received").text("");
+			$("#averageRating").text("");
+			$("#totalRatings").text("");
+			$("#cuisine").text("");
 			$("#popDish").text("");
 			$("#menu").text("");
 			$("#website").text("");
