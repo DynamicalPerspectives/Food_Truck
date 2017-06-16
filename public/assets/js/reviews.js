@@ -59,10 +59,21 @@ function parseFTData(data) {
 	}
 
 	if (truckD.website !== "www.none.com") {
+
+		var tWebsite = truckD.website;
+
+		if (tWebsite.startsWith("http://") || tWebsite.startsWith("https://")) {
+			if (tWebsite.startsWith("http://")) {
+				tWebsite = tWebsite.replace("http://", "");
+			} else {
+				tWebsite = tWebsite.replace("https://", "");
+			}
+ 		}
+
 		var link = $("<a>");
-		link.attr("href", "http://" + truckD.website);
+		link.attr("href", "http://" + tWebsite);
 		link.attr("target", "_blank");
-		link.text(truckD.website);
+		link.text(tWebsite);
 		$("#website").text("Website: ");
 		$("#website").append(link);
 	}
