@@ -118,23 +118,21 @@ h3 {
 	background: #CFB095;
 }
 
-#averageRating, #cuisine, #website, #twitterHandle {
+#averageRating, #cuisine, #menu, #popDish, #website, #twitterHandle {
 	font-weight: bold;
 	font-size: 25px;
-    text-decoration: underline;
     text-align: center;
 }
 
 #tweets {
-	color: blue;
-	font-size: 18px;
+	color: #3F88C5;
+	font-size: 15px;
 }
 
 #truckReviews {
 	font-weight: bold;
 	font-size: 25px;
     text-decoration: underline;
-    padding-top: 50px;
     text-align: center;
 }
 
@@ -144,9 +142,31 @@ h3 {
 }
 
 #tweets h5 {
-    font-size: 35px;
+    font-size: 25px;
     text-align: center;
-    padding-top: 50px;
+}
+
+#bird {
+  color: #3F88C5;
+}
+
+.team {
+  display: inline-block;
+}
+
+.tweetLeft {
+  text-align: left;
+}
+
+#truckTweets {
+  border-color: #3F88C5;
+  border-radius: 20px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+#averageRating {
+  margin-bottom: 0;
 }
 
 #uploadModal {
@@ -186,7 +206,7 @@ nav a {
 }
 
 #aboutSection { 
-  height: 32%;
+  height: 40%;
 }
 
 #aboutSection h1 { 

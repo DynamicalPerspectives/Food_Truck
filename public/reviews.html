@@ -14,18 +14,14 @@
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
   
   <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Bubbler+One|Pacifico|Righteous" rel="stylesheet">
-  <!-- **I DID UPDATE THE JQUERY AND BOOTSTRAP SCRIPT TAGS TO THE MOST RECENT VERSIONS -->
- <!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css"> -->
+  <link href="https://fonts.googleapis.com/css?family=Bubbler+One|Pacifico|Righteous" rel="stylesheet">
   <script
         src="https://code.jquery.com/jquery-3.2.1.js"
         integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
         crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script> -->
-  <!-- **I DID CHANGE THE HREF BELOW TO THE PATH FOR THE STYLE.CSS FILE -->
+  <script src="https://use.fontawesome.com/4ddb2d1d4e.js"></script>
   <link rel="stylesheet" href="assets/css/style.css">
-  <!-- <script src=“https://use.fontawesome.com/0e571e0b0b.js“></script> -->
 
 
 </head>
@@ -49,7 +45,6 @@
     </div>
   </div>
 
-    <!-- **I MADE THE DROPDOWN BUTTON A SLIGHTLY DIFFERENT KIND FROM BOOTSTRAP (THE SPLIT BUTTON DROPDOWN) BECAUSE IT'S EASIER TO MANIPULATE WITH JAVASCRIPT -->
   <div class="container">
     <div class="row text-center">
       <div class="col-sm-offset-3 col-sm-6">
@@ -70,37 +65,49 @@
 
     <div class="container">
       <h3>Keep on Truckin'...</h3>
-      <!-- **I ADDED AN ID OF "FTINFO" HERE SO THAT WE COULD DO DISPLAY HIDDEN TO START -->
       <div class="panel-group" id="ftInfo">
         <div class="panel panel-default">
-          <div class="panel-heading text-center" id="ftHeader">
+          <div class="panel-heading" id="ftHeader">
             <h2 id="truckName"></h2>
             <h5 id="truckDescription"></h5>
           </div>
           <div class="panel-body" id="truckInfo">
-              <!-- **I ADDED ID'S HERE SO THAT I COULD PLACE THE DATA ONTO THE PAGE. I ALSO ADDED SOME BOLDING TO THE RATING ELEMENT -->
-              <p id="averageRating"></p>
-              <p id="totalRatings"></p>
-              <p id="cuisine"></p>
-              <p id="menu"></p>
-              <p id="popDish"></p>
-              <p id="website"></p>
-              <p id="twitterHandle"></p>
-              <!-- **I ADDED IN A DIV TO HANDLE THE TWEETS -->
-              <div id="tweets">
+              <div class="row">
+                <div class="col-sm-6 text-center" id="stats">
+                  <p id="averageRating"></p>
+                  <p id="range"></p>
+                  <p id="cuisine"></p>
+                  <p id="menu"></p>
+                  <p id="popDish"></p>
+                  <p id="website"></p>
+                </div>
+                <div class="col-sm-5" id="truckTweets">
+                  <div class="row text-center">
+                    <i class="fa fa-twitter fa-2x" id="bird" aria-hidden="true"></i>
+                    <p class="team" id="twitterHandle"></p>
+                  </div>
+                  <div id="tweets">
+                  </div>
+                </div>
               </div>
-              <!-- **I ADDED IN A DIV AND A TITLE TO HANDLE THE REVIEWS -->
-              <h5 id="truckReviews">Some real truckin' reviews...</h5>
-              <div id="currentReviews">
+              <br><br>
+              <div class="row">
+                <div class="col-sm-12 text-center">
+                  <button class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModalNorm">
+                      Rate and Review this Truck
+                  </button>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-12 text-center">
+                  <h5 id="truckReviews">Some real truckin' reviews...</h5>
+                  <div id="currentReviews">
+                  </div>
+                </div>
               </div>
           </div>
         </div>
-
-
-        <!-- Button trigger modal -->
-        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalNorm">
-            Rate and Write a Review
-        </button>
 
         <!-- Modal -->
         <div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -109,10 +116,9 @@
               <!-- Modal Header -->
               <div class="modal-header">
                 <button type="button" class="close" id="closer" data-dismiss="modal">
-                               <span aria-hidden="true">&times;</span>
-                               <span class="sr-only">Close</span>
-                        </button>
-                <!-- **I TOOK OUT THE MODAL TITLE TEXT BECAUSE WE'LL INJECT IT FROM THE DB -->
+                  <span aria-hidden="true">&times;</span>
+                  <span class="sr-only">Close</span>
+                </button>
                 <h4 class="modal-title" id="myModalLabel">
                 </h4>
               </div>
@@ -145,7 +151,6 @@
                 </div>
                 <!-- Modal Footer -->
                 <div class="modal-footer">
-                  <!-- **I DELETED THE OTHER BUTTON AND MADE IT SO THAT THE MODAL WOULD JUST SHUT ONCE THEY CLICK "SUBMI" -->
                   <button type="button" class="btn btn-primary"  id="reviewSubmit">
                             Submit
                   </button>
