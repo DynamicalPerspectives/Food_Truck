@@ -12,12 +12,12 @@ var average = function(avg, ratings) {
     } else return avg / ratings;
 };
 
-//THIS WILL PRODUCE THE TOP 6 FOOD TRUCKS
-router.get("/toptrucks", function(req, res) {
-	db.Foodtrucks.findAll({ order: "current_rating DESC", limit: 3 }).then(function(dbFoodtrucks) {
-		res.json(dbFoodtrucks);
-	});
-});
+// //THIS WILL PRODUCE THE TOP 6 FOOD TRUCKS
+// router.get("/toptrucks", function(req, res) {
+// 	db.Foodtrucks.findAll({ order: "current_rating DESC", limit: 3 }).then(function(dbFoodtrucks) {
+// 		res.json(dbFoodtrucks);
+// 	});
+// });
 
 //THIS WILL FILL THE DROPDOWN WITH ALL OUR FOODTRUCK NAMES
 router.get("/foodtrucks", function(req, res) {
@@ -50,41 +50,11 @@ router.get("/reviews/:ftName", function(req, res) {
 		if (dbFoodtrucks.dataValues.total_ratings === 0) {
 			data.reviewsData = false;
 
-			var params = { screen_name: dbFoodtrucks.dataValues.twitter_handle, count: "3" };
-			twitterClient.get('statuses/user_timeline', params, function(error, tweets, response) {
-			  	if (!error) {
-			  		console.log(tweets.length);
-			  		if (tweets.length === 0) {
-			  			data.tweetsData = false;
-			  			res.json(data);
-			  		} else {
-				  		data.tweetsData.description = tweets[0].user.description;
-
-						for (var i = 0; i < tweets.length; i++) {
-					   	 	var trunc = tweets[i].created_at.slice(0, 10);
-					     	data.tweetsData.created.push(trunc);
-					     	data.tweetsData.tweet.push(tweets[i].text);
-					    }
-					    console.log(data);
-					    res.json(data);
-					}
-				}
-			});
-		} else {
-
-			db.Reviews.findAll({
-				where: {
-					FoodtruckId: dbFoodtrucks.dataValues.id
-				}
-			}).then(function(dbReviews) {
-				for (var i = 0; i < dbReviews.length; i++) {
-					data.reviewsData.push(dbReviews[i].dataValues);
-				}
-
-				//TWITTER LOGIC MIGHT GO HERE
+			if (dbFoodtrucks.dataValues.twitter_handle !== "none") {
 				var params = { screen_name: dbFoodtrucks.dataValues.twitter_handle, count: "3" };
 				twitterClient.get('statuses/user_timeline', params, function(error, tweets, response) {
 				  	if (!error) {
+				  		console.log(tweets.length);
 				  		if (tweets.length === 0) {
 				  			data.tweetsData = false;
 				  			res.json(data);
@@ -101,6 +71,46 @@ router.get("/reviews/:ftName", function(req, res) {
 						}
 					}
 				});
+			} else {
+				data.tweetsData = false;
+				res.json(data);
+			}
+		} else {
+
+			db.Reviews.findAll({
+				where: {
+					FoodtruckId: dbFoodtrucks.dataValues.id
+				}
+			}).then(function(dbReviews) {
+				for (var i = 0; i < dbReviews.length; i++) {
+					data.reviewsData.push(dbReviews[i].dataValues);
+				}
+
+				if (dbFoodtrucks.dataValues.twitter_handle !== "none") {
+					var params = { screen_name: dbFoodtrucks.dataValues.twitter_handle, count: "3" };
+					twitterClient.get('statuses/user_timeline', params, function(error, tweets, response) {
+					  	if (!error) {
+					  		console.log(tweets.length);
+					  		if (tweets.length === 0) {
+					  			data.tweetsData = false;
+					  			res.json(data);
+					  		} else {
+						  		data.tweetsData.description = tweets[0].user.description;
+
+								for (var i = 0; i < tweets.length; i++) {
+							   	 	var trunc = tweets[i].created_at.slice(0, 10);
+							     	data.tweetsData.created.push(trunc);
+							     	data.tweetsData.tweet.push(tweets[i].text);
+							    }
+							    console.log(data);
+							    res.json(data);
+							}
+						}
+					});
+				} else {
+					data.tweetsData = false;
+					res.json(data);
+				}
 			});
 		}
 	});

@@ -14,7 +14,7 @@ router.get("/enter", function (req, res) {
 	res.sendFile(path.join(__dirname, "../public/add.html"));
 });
 
-router.get ("/review", function(req, res) {
+router.get ("/reviews", function(req, res) {
 	res.sendFile(path.join(__dirname, "../public/reviews.html"));
 });
 
