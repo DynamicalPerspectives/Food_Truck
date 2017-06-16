@@ -85,7 +85,7 @@ function parseFTData(data) {
 	} else {
 		for (var i = 0; i < reviewsD.length; i++) {
 			var ptag = $("<p>");
-			ptag.text(reviewsD[i].user_name + " says: " + reviewsD[i].review)
+			ptag.html(reviewsD[i].user_name + " says: " + reviewsD[i].review)
 			$("#currentReviews").append(ptag);
 		}
 	}
