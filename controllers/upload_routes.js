@@ -1,18 +1,21 @@
 var express = require("express");
 var aws = require("aws-sdk");
 var path = require("path");
-var keys = path.join(__dirname + "/awskeys.json") || { accessKeyId: process.env.S3_KEY, secretAccessKey: process.env.S3_SECRET };
+// var keys = path.join(__dirname + "/awskeys.json");
 var router = express.Router();
 var multers3 = require("multer-s3");
 var multer = require("multer");
 var db = require("../models");
 
-aws.config.loadFromPath(keys);
+// aws.config.loadFromPath(keys);
 aws.config.update({
 	signatureVersion: "v4"
 });
 
-var s0 = new aws.S3({});
+var s0 = new aws.S3({
+	accessKeyId: process.env.S3_KEY, 
+	secretAccessKey: process.env.S3_SECRET
+});
 
 var upload = multer({
 	storage: multers3({
