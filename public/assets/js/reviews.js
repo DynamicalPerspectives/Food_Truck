@@ -16,8 +16,8 @@ function getFoodTrucks() {
 			$("#tweets").empty();
 			$("#currentReviews").empty();
 			$("#received").text("");
-			$("#averageRating").text("");
-			$("#totalRatings").text("");
+			$("#averageRating").html("");
+			$("#range").text("");
 			$("#cuisine").text("");
 			$("#popDish").text("");
 			$("#menu").text("");
@@ -44,8 +44,8 @@ function parseFTData(data) {
 	var reviewsD = data.reviewsData;
 
 	$("#truckName").text(truckD.name);
-	$("#averageRating").text("Rating: " + truckD.current_rating);
-	$("#totalRatings").text("Total reviews: " + truckD.total_ratings);
+	$("#averageRating").html("Rating: <strong>" + truckD.current_rating + "</strong><small>       (" + truckD.total_ratings + " reviews)</small>");
+	$("#range").text("1 = Don't bother ... 5 = Must try this truck");
 	$("#cuisine").text("Cuisine: " + truckD.food_type);
 	$("#truckReviews").text("Some real truckin' reviews...");
 
@@ -93,7 +93,8 @@ function parseFTData(data) {
 
 		for (var i = 0; i < twitterD.tweet.length; i++) {
 			var ptag = $("<p>");
-			ptag.html(twitterD.created[i] + "  --  " + twitterD.tweet[i]);
+			ptag.addClass("tweetLeft");
+			ptag.html(twitterD.created[i] + ": " + twitterD.tweet[i]);
 			$("#tweets").append(ptag);
 		}
 	}
@@ -136,8 +137,8 @@ $("#reviewSubmit").on("click", function(event) {
 		console.log(reviewObject);
 
 		$.post(queryUrl, reviewObject, function(data) {
-			$("#averageRating").text("Rating: " + data[0]);
-			$("#totalRatings").text("Total reviews: " + data[1]);
+			$("#averageRating").html("Rating: <strong>" + data[0] + "</strong><small>       (" + data[1] + " reviews)</small>");
+			$("#range").text("1 = Don't bother ... 5 = Must try this truck");
 			var ptag = $("<p>");
 			ptag.text(reviewObject.user_name + " says: " + reviewObject.review);
 			$("#truckReviews").text("Some real truckin' reviews...");
